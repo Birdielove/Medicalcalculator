@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Medical Calculator</string>
+    <string name="Hint">Weight of Patient</string>
+    <string name="ConvertTokilo">Convert Pounds to Kilograms</string>
+    <string name="ConvertToPounds">Convert Kilograms to Pounds</string>
+    <string name="Title">Convert Patient Weight</string>
 </resources>
