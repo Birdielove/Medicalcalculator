@@ -31,16 +31,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (toPound.isChecked()) {
                     value = Double.parseDouble(String.valueOf(userValue.getText()));
-                    result = value * 2.20462;
-                    Toast.makeText(MainActivity.this, String.valueOf(result), Toast.LENGTH_SHORT).show();
-                    Intent passingWeight = new Intent(MainActivity.this, StoreWeigth.class);
-                    passingWeight.putExtra("Result", String.valueOf(result));
-                    startActivity(passingWeight);
+                    if(value>500){
+                        Toast.makeText(MainActivity.this, "Weight limit exceeded", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        result = value * 2.20462;
+                        Toast.makeText(MainActivity.this, String.valueOf(result), Toast.LENGTH_SHORT).show();
+                        Intent passingWeight = new Intent(MainActivity.this, StoreWeigth.class);
+                        passingWeight.putExtra("Result", String.valueOf(result));
+                        startActivity(passingWeight);
+                    }
                 }
                 else if(toKilo.isChecked()){
-                    value = Double.parseDouble(String.valueOf(userValue.getText()));
-                    result = value * 0.4535918;
-                    Toast.makeText(MainActivity.this, String.valueOf(result), Toast.LENGTH_SHORT).show();
+                    if(value>1000){
+                        Toast.makeText(MainActivity.this, "Weight limit exceeded", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        value = Double.parseDouble(String.valueOf(userValue.getText()));
+                        result = value * 0.4535918;
+                        Toast.makeText(MainActivity.this, String.valueOf(result), Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else if(!(toKilo.isChecked() && toPound.isChecked())){
                     Toast.makeText(MainActivity.this, "Please check the type first!", Toast.LENGTH_SHORT).show();
