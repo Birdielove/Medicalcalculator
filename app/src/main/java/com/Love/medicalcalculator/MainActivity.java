@@ -2,6 +2,7 @@ package com.Love.medicalcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.medical);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         final Button calculate = findViewById(R.id.button);
         final EditText userValue = findViewById(R.id.editText);
@@ -29,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                     value = Double.parseDouble(String.valueOf(userValue.getText()));
                     result = value * 2.20462;
                     Toast.makeText(MainActivity.this, String.valueOf(result), Toast.LENGTH_SHORT).show();
+                    Intent passingWeight = new Intent(MainActivity.this, StoreWeigth.class);
+                    passingWeight.putExtra("Result", String.valueOf(result));
+                    startActivity(passingWeight);
                 }
                 else if(toKilo.isChecked()){
                     value = Double.parseDouble(String.valueOf(userValue.getText()));
