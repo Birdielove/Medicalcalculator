@@ -17,6 +17,9 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity {
     double value;
     double result;
+    String inputUnit;
+    String outputUnit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +49,14 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             result = value * 2.20462;
                             Toast.makeText(MainActivity.this, String.valueOf(String.format("Weight = %.2f Kgs", result)), Toast.LENGTH_SHORT).show();
+                            inputUnit = "Lbs";
+                            outputUnit = "Kgs";
                             Intent passingWeight = new Intent(MainActivity.this, StoreWeigth.class);
-                            passingWeight.putExtra("Result", String.valueOf(result));
-                           // startActivity(passingWeight);
+                            Bundle myBundle = new Bundle();
+                            myBundle.putDouble( "InputWeight" ,value);
+                            myBundle.putDouble( "OutputWeight" ,result);
+                            passingWeight.putExtras(myBundle);
+                            startActivity(passingWeight);
                         }
                     } else if (toKilo.isChecked()) {
                         if (value > 1000) {
